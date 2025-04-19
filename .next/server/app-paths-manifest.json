@@ -1,3 +1,6 @@
 {
-  "/page": "app/page.js"
+  "/api/auth/route": "app/api/auth/route.js",
+  "/api/admin/iglesias/route": "app/api/admin/iglesias/route.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }

@@ -160,7 +160,7 @@ export default function Page() {
                     <p className="mb-5 text-white tracking-[.70em] text-xl">La simiente está viva</p>
                     <p className="ml-6 text-white text-[45px]/[17px] tracking-[.75em] font-normal uppercase">Bienvenidos</p>
 
-                    <nav className="w-2/3 grid grid-rows-2 grid-flow-col font-thin text-white text-base py-8 gap-2">
+                    <nav className="w-2/3 grid grid-rows-2 grid-flow-col justify-between font-thin text-white text-base py-8 gap-2">
                         {slides.map((item, i) => (
                             <motion.div
                                 key={item.href}

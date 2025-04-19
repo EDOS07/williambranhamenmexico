@@ -1,13 +1,24 @@
 "use client";
+import { Link } from "@heroui/react";
 import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
 import { Select } from "@heroui/react";
 
+
+import IglesiasDashboard from "@/app/admin/dashboard/components/IglesiasDashboard";
+import MisionesDashboard from "@/app/admin/dashboard/components/MisionesDashboard";
+import ActividadesDashboard from "@/app/admin/dashboard/components/ActividadesDashboard";
+import ContenidoDashboard from "@/app/admin/dashboard/components/ContenidoDashboard";
+import UsuariosDashboard from "@/app/admin/dashboard/components/UsuariosDashboard";
+
+
+import { GoHome, GoHomeFill } from "react-icons/go";
+
 export default function Dashboard() {
   // const [loading, setLoading] = useState(true);
-  
+
   // const [misiones, setMisiones] = useState<any[]>([]);
-  
+
 
   // const [formDataM, setFormDataM] = useState({
   //   id: null,
@@ -28,7 +39,7 @@ export default function Dashboard() {
   //   ],
   // });
 
-  
+
 
   // // Cargar Misiones
 
@@ -55,11 +66,82 @@ export default function Dashboard() {
   // if (loading) return <Loading />;
   // iglesias.map((iglesia) => { console.log(iglesia) });
 
+
+  const [activeSection, setActiveSection] = useState("iglesias");
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case "iglesias":
+        return <IglesiasDashboard />;
+      case "misiones":
+        return <MisionesDashboard />;
+      case "actividades":
+        return <ActividadesDashboard />;
+      case "contenido":
+        return <ContenidoDashboard />;
+      case "usuarios":
+        return <UsuariosDashboard />;
+      default:
+        return <div>Selecciona una sección</div>;
+    }
+  };
+
   return (
     <>
-      
-      <h1>Bienvenido al Dashboard</h1>
-        
+
+      <div className="flex h-screen bg-gray-100">
+        {/* Sidebar */}
+        <aside className="w-64 bg-white shadow-md">
+          <div className="p-6 text-xl font-bold text-blue-600">Dashboard WBMX </div>
+          <nav className="flex flex-col gap-2 p-4">
+            <button
+              onClick={() => setActiveSection("iglesias")}
+              className="text-gray-700 hover:bg-blue-100 px-4 py-2 rounded text-left"
+            >
+              Iglesias
+            </button>
+            <button
+              onClick={() => setActiveSection("misiones")}
+              className="text-gray-700 hover:bg-blue-100 px-4 py-2 rounded text-left"
+            >
+              Misiones
+            </button>
+            <button
+              onClick={() => setActiveSection("actividades")}
+              className="text-gray-700 hover:bg-blue-100 px-4 py-2 rounded text-left"
+            >
+              Actividades
+            </button>
+            <button
+              onClick={() => setActiveSection("contenido")}
+              className="text-gray-700 hover:bg-blue-100 px-4 py-2 rounded text-left"
+            >
+              Contenido de las actividades
+            </button>
+            <button
+              onClick={() => setActiveSection("usuarios")}
+              className="text-gray-700 hover:bg-blue-100 px-4 py-2 rounded text-left"
+            >
+              Usuarios
+            </button>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="flex bg-white shadow px-6 py-4">
+            <h1 className="text-2xl font-semibold text-gray-800">Panel de Control</h1>
+            <Link href="/">
+              <GoHome />
+            </Link>
+          </header>
+
+          {/* Dashboard content */}
+          <main className="p-6 overflow-auto">{renderSection()}</main>
+        </div>
+      </div >
+
     </>
   );
 }
